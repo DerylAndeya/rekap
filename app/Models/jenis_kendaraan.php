@@ -10,7 +10,7 @@ class Jenis_kendaraan extends Model
     use HasFactory;
     protected $table="jenis_kendaraan";
     protected $fillable = [
-        'jenis_kendaraan',
+        'nama_jenis',
         'isDeleted',
     ];
 }

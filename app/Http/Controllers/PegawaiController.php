@@ -12,23 +12,38 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        //
+        $data = Pegawai::all();
+
+        return view('pegawai/home')->with('pegawai', $data);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('pegawai/form_create');//}
+
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){//
+
+        $validated_data=$request->validate([
+            'nama_pegawai'=>'required',
+        ]);
+
+        $validated_data['isDeleted'] = false;
+
+        $pegawai=new Pegawai();
+
+        $pegawai->fill($validated_data);
+
+        $pegawai->save();
+
+        return redirect()->route('pegawai.index')->with('success','data berhasil disimpan');
     }
 
     /**

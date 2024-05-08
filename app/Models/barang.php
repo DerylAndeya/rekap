@@ -11,9 +11,7 @@ class Barang extends Model
     protected $table="barang";
     protected $fillable = [
         'nama_barang',
-        'jenis_barang',
         'harga',
-        'stock',
         'isDeleted',
     ];
 }

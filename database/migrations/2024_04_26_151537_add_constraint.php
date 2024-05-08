@@ -11,22 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('kendaraan', function (Blueprint $table) {
-            // Add a foreign key constraint
-            $table->foreign('FK_jenis_kendaraan')->references('id')->on('jenis_kendaraan')->onDelete('cascade');
-        });
 
         Schema::table('invoice', function (Blueprint $table) {
             // Add a foreign key constraint
-            $table->foreign('FK_kendaraan')->references('id')->on('jenis_kendaraan')->onDelete('cascade');
-            $table->foreign('FK_pemesan')->references('id')->on('pemesan')->onDelete('cascade');
-            $table->foreign('FK_pegawai')->references('id')->on('pegawai')->onDelete('cascade');
+            $table->foreign('FK_metode_pembayaran')->references('id')->on('metode_pembayaran');
+            $table->foreign('FK_bank')->references('id')->on('bank');
+            $table->foreign('FK_pemesan')->references('id')->on('pemesan');
+            $table->foreign('FK_pegawai')->references('id')->on('pegawai');
         });
-        
+
         Schema::table('transaksi', function (Blueprint $table) {
             // Add a foreign key constraint
-            $table->foreign('FK_kode_invoice')->references('id')->on('invoice')->onDelete('cascade');
-            $table->foreign('FK_kode_barang')->references('id')->on('barang')->onDelete('cascade');
+            $table->foreign('FK_kode_invoice')->references('id')->on('invoice');
+            $table->foreign('FK_kode_barang')->references('id')->on('barang');
+        });
+
+        Schema::table('tanda_terima', function (Blueprint $table) {
+            // Add a foreign key constraint
+            $table->foreign('FK_kode_invoice')->references('id')->on('invoice');
+            $table->foreign('FK_jenis_kendaraan')->references('id')->on('jenis_kendaraan');
+            $table->foreign('FK_pegawai')->references('id')->on('pegawai');
+            $table->foreign('FK_pengirim')->references('id')->on('pengirim');
+            $table->foreign('FK_penerima')->references('id')->on('penerima');
         });
         //
     }
@@ -36,19 +42,25 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('kendaraan', function (Blueprint $table) {
-            $table->dropForeign(['FK_jenis_kendaraan']);
-        });
 
         Schema::table('invoice', function (Blueprint $table) {
-            $table->dropForeign(['FK_kendaraan']);
-            $table->dropForeign(['FK_jenis_pemesan']);
-            $table->dropForeign(['FK_jenis_pegawai']);
+            $table->dropForeign(['FK_metode_pembayaran']);
+            $table->dropForeign(['FK_bank']);
+            $table->dropForeign(['FK_pegawai']);
+            $table->dropForeign(['FK_pemesan']);
         });
 
         Schema::table('transaksi', function (Blueprint $table) {
             $table->dropForeign(['FK_kode_invoice']);
             $table->dropForeign(['FK_kode_barang']);
+        });
+
+        Schema::table('tanda_terima', function (Blueprint $table) {
+            $table->dropForeign(['FK_kode_invoice']);
+            $table->dropForeign(['FK_jenis_kendaraan']);
+            $table->dropForeign(['FK_pegawai']);
+            $table->dropForeign(['FK_pengirim']);
+            $table->dropForeign(['FK_penerima']);
         });
         //
     }

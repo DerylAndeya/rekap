@@ -12,23 +12,40 @@ class PemesanController extends Controller
      */
     public function index()
     {
-        //
+        $data = Pemesan::all();
+
+        return view('pemesan/home')->with('pemesan', $data);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('pemesan/form_create');//}
+
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){//
+
+        $validated_data=$request->validate([
+            'nama_pemesan'=>'required',
+            'kota'=>'required',
+        ]);
+        $validated_data['isDeleted'] = false;
+
+        $pemesan=new Pemesan();
+
+        $pemesan->fill($validated_data);
+
+       // dd($pemesan);
+
+        $pemesan->save();
+
+        return redirect()->route('pemesan.index')->with('success','data berhasil disimpan');
     }
 
     /**

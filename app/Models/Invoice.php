@@ -10,12 +10,13 @@ class Invoice extends Model
     use HasFactory;
     protected $table="invoice";
     protected $fillable = [
+        'nomor_invoice',
         'tanggal_transaksi',
-        'metoder_pembayaran',
-        'status_pemesanan',
-        'FK_kendaraan',
-        'FK_pemesan',
+        'FK_metode_pembayaran',
+        'rekening',
+        'FK_bank',
         'FK_pegawai',
+        'FK_pemesan',
         'isDeleted',
     ];
 }

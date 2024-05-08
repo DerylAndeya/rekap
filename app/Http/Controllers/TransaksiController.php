@@ -12,7 +12,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $data = Transaksi::all();
+
+        return view('transaksi/home')->with('transaksi', $data);
     }
 
     /**
@@ -20,7 +22,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        return view('transaksi/form_create');
     }
 
     /**
@@ -28,7 +30,21 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated_data=$request->validate([
+            'FK_kode_invoice'=>'required',
+            'FK_kode_barang'=>'required',
+            'harga'=>'required',
+        ]);
+
+        $validated_data['isDeleted'] = false;
+
+        $transaksi=new Transaksi();
+
+        $transaksi->fill($validated_data);
+
+        $transaksi->save();
+
+        return redirect()->route('transaksi.index')->with('success','data berhasil disimpan');
     }
 
     /**
