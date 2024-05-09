@@ -27,7 +27,7 @@
                                     <th>Rekening</th>
                                     <th>Bank</th>
                                     <th>Pegawai</th>
-                                    <th>Pemesan</th>
+                                    <th>Pemesan </th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TandaTerima;
 use App\Http\Requests\StoreTandaTerimaRequest;
 use App\Http\Requests\UpdateTandaTerimaRequest;
+use Illuminate\Http\Request;
 
 class TandaTerimaController extends Controller
 {
@@ -30,7 +31,7 @@ class TandaTerimaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTandaTerimaRequest $request)
+    public function store(Request $request)
     {
         $validated_data=$request->validate([
             'FK_kode_invoice'=>'required',

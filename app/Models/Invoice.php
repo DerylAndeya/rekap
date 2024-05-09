@@ -11,7 +11,7 @@ class Invoice extends Model
     protected $table="invoice";
     protected $fillable = [
         'nomor_invoice',
-        'tanggal_transaksi',
+        'tanggal',
         'FK_metode_pembayaran',
         'rekening',
         'FK_bank',

@@ -1,31 +1,49 @@
 @extends('layouts.app')
-@section('title','Dashboard')
+@section('title', 'Dashboard')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-        <h1>Form Invoice</h1>
+            <h1>Form Invoice</h1>
         </div>
 
         <div class="section-body">
             <div class="card">
                 <div class="card-header">
-                  <h4>Input Text</h4>
+                    <h4>Input Text</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('invoice.store')}}" method="post">
+                    <form action="{{ route('invoice.store') }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label>Nomor Invoice</label>
                             <input type="text" class="form-control" name="nomor_invoice">
                         </div>
                         <div class="form-group">
-                            <label>Tanggal Transaksi</label>
-                            <input type="text" class="form-control" name="tanggal_transaksi">
+                            <label>Tanggal</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                </div>
+                                <input type="text" name="tanggal" value="" />
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Metode Pembayaran</label>
-                            <input type="text" class="form-control" name="FK_metode_pembayaran">
+                            <select name="FK_metode_pembayaran" class="form-control select2 select2-hidden-accessible"
+                                tabindex="-1" aria-hidden="true">
+                                @forelse ($mps as $mp)
+                                    <option value="{{ $mp->id }}">
+                                        {{ $mp->nama_metode }}
+                                    </option>
+                                @empty
+                                    <option value="" disabled>
+                                        Kosong
+                                    </option>
+                                @endforelse
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Rekening</label>
@@ -33,23 +51,56 @@
                         </div>
                         <div class="form-group">
                             <label>Bank</label>
-                            <input type="text" class="form-control" name="FK_bank">
+                            <select name="FK_bank" class="form-control select2 select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true">
+                                @forelse ($banks as $b)
+                                    <option value="{{ $b->id }}">
+                                        {{ $b->nama_bank }}
+                                    </option>
+                                @empty
+                                    <option value="" disabled>
+                                        Kosong
+                                    </option>
+                                @endforelse
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Pegawai</label>
-                            <input type="text" class="form-control" name="FK_pegawai">
+                            <select name="FK_pegawai" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                @forelse ($pegawais as $p)
+                                    <option value="{{ $p->id }}">
+                                        {{ $p->nama_pegawai }}
+                                    </option>
+                                @empty
+                                    <option value="" disabled>
+                                        Kosong
+                                    </option>
+                                @endforelse
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Pemesan</label>
-                            <input type="text" class="form-control" name="FK_pemesan">
+                            <select name="FK_pemesan" class="form-control select2 select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true">
+                                @forelse ($pemesans as $p)
+                                    <option value="{{ $p->id }}">
+                                        {{ $p->nama_pemesam }}
+                                    </option>
+                                @empty
+                                    <option value="" disabled>
+                                        Kosong
+                                    </option>
+                                @endforelse
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary col-1">Submit</button>
-                        </div>
-                    </form>
+                </div>
+                <button type="submit" class="btn btn-primary col-1">Submit</button>
+            </div>
+            </form>
 
 
 
-              </div>
+        </div>
 
 
         </div>
@@ -62,18 +113,46 @@
 
     <li class="menu-header">Rekap</li>
     <li class="nav-item dropdown">
-      <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Tabel </span></a>
-      <ul class="dropdown-menu">
-        <li><a class="nav-link" href="layout-default.html">Barang</a></li>
-        <li><a class="nav-link" href="layout-transparent.html">Kendaraan</a></li>
-        <li><a class="nav-link" href="layout-top-navigation.html">Jenis Kendaraan</a></li>
-      </ul>
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Tabel
+            </span></a>
+        <ul class="dropdown-menu">
+            <li><a class="nav-link" href="layout-default.html">Barang</a></li>
+            <li><a class="nav-link" href="layout-transparent.html">Kendaraan</a></li>
+            <li><a class="nav-link" href="layout-top-navigation.html">Jenis Kendaraan</a></li>
+        </ul>
     </li>
     <li class="nav-item dropdown">
-      <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Hasil Rekap </span></a>
-      <ul class="dropdown-menu">
-        <li><a class="nav-link" href="layout-default.html">Bulanan</a></li>
-        <li><a class="nav-link" href="layout-transparent.html">Tahunan</a></li>
-      </ul>
+        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Hasil
+                Rekap </span></a>
+        <ul class="dropdown-menu">
+            <li><a class="nav-link" href="layout-default.html">Bulanan</a></li>
+            <li><a class="nav-link" href="layout-transparent.html">Tahunan</a></li>
+        </ul>
     </li>
 @endsection
+@push('customScript')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script>
+        $(function() {
+            $('input[name="tanggal"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                value: moment(),
+                minYear: 2000,
+                maxYear: moment().add(1, 'years').year(),
+                locale: {
+                    format: 'YYYY/MM/DD' // Specify the datetime format
+                }
+            });
+        });
+    </script>
+@endpush
+@push('customStyle')
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> --}}
+    <link rel="stylesheet" href="{{ asset('assets/select2/dist/css/select2.min.css') }}">
+@endpush
+@push('customScript')
+    <script src="{{ asset('assets/select2/dist/js/select2.full.min.js') }}"></script>
+@endpush

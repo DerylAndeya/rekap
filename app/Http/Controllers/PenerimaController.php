@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Penerima;
 use App\Http\Requests\StorePenerimaRequest;
 use App\Http\Requests\UpdatePenerimaRequest;
+use Illuminate\Http\Request;
 
 class PenerimaController extends Controller
 {
@@ -30,7 +31,7 @@ class PenerimaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePenerimaRequest $request)
+    public function store(Request $request)
     {
         $validated_data=$request->validate([
             'nama_penerima'=>'required',

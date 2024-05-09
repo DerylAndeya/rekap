@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MetodePembayaran;
 use App\Http\Requests\StoreMetodePembayaranRequest;
 use App\Http\Requests\UpdateMetodePembayaranRequest;
+use Illuminate\Http\Request;
 
 class MetodePembayaranController extends Controller
 {
@@ -30,7 +31,7 @@ class MetodePembayaranController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMetodePembayaranRequest $request)
+    public function store(Request $request)
     {
         $validated_data=$request->validate([
             'nama_metode'=>'required',

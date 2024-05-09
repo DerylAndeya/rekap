@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bank;
 use App\Models\Invoice;
+use App\Models\MetodePembayaran;
+use App\Models\Pegawai;
+use App\Models\Pemesan;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -15,7 +19,6 @@ class InvoiceController extends Controller
         $data = Invoice::all();
 
         return view('invoice/home')->with('invoice', $data);
-
     }
 
     /**
@@ -23,7 +26,11 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('invoice/form_create');
+        $metode_pembayaran = MetodePembayaran::all();
+        $bank = Bank::all();
+        $pegawai = Pegawai::all();
+        $pemesan = Pemesan::all();
+        return view('invoice/form_create')->with(['mps' => $metode_pembayaran, 'banks' => $bank, 'pegawais'=> $pegawai, 'pemesans' => $pemesan]);
     }
 
     /**
@@ -31,27 +38,26 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        $validated_data=$request->validate([
-            'nomor_invoice'=>'required',
-            'tanggal_transaksi'=>'required',
-            'FK_metode_pembayaran'=>'required',
-            'rekening'=>'required',
-            'FK_bank'=>'required',
-            'FK_pegawai'=>'required',
-            'FK_pemesan'=>'required',
+        $validated_data = $request->validate([
+            'nomor_invoice' => 'required',
+            'tanggal' => 'required',
+            'FK_metode_pembayaran' => 'required',
+            'rekening' => 'required',
+            'FK_bank' => 'required',
+            'FK_pegawai' => 'required',
+            'FK_pemesan' => 'required',
         ]);
         $validated_data['isDeleted'] = false;
 
-        $invoice=new Invoice();
+        $invoice = new Invoice();
 
         $invoice->fill($validated_data);
 
-       // dd($invoice);
+        // dd($invoice);
 
         $invoice->save();
 
-        return redirect()->route('invoice.index')->with('success','data berhasil disimpan');
-
+        return redirect()->route('invoice.index')->with('success', 'data berhasil disimpan');
     }
 
     /**

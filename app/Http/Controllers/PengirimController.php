@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pengirim;
 use App\Http\Requests\StorePengirimRequest;
 use App\Http\Requests\UpdatePengirimRequest;
+use Illuminate\Http\Request;
 
 class PengirimController extends Controller
 {
@@ -30,7 +31,7 @@ class PengirimController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePengirimRequest $request)
+    public function store(Request $request)
     {
         $validated_data=$request->validate([
             'nama_pengirim'=>'required',

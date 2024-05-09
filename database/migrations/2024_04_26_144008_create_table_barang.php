@@ -44,7 +44,7 @@ return new class extends Migration
         Schema::create('invoice', function (Blueprint $table) {
             $table->id();
             $table->string('nomor_invoice');
-            $table->date('tanggal_transaksi');
+            $table->date('tanggal');
             $table->unsignedBigInteger('FK_metode_pembayaran');
             $table->string('rekening');
             $table->unsignedBigInteger('FK_bank');

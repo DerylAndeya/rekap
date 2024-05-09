@@ -24,7 +24,7 @@
       <nav class="navbar navbar-expand-lg main-navbar">
         @include('layouts.navbar')
       </nav>
-      
+
       <div class="main-sidebar sidebar-style-2">
         @include('layouts.sidebar')
       </div>

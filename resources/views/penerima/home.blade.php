@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h4>LIST PENERIMA</h4>
                     <div class="card-header-action">
-                        <a href="{{ route('jenis_kendaraan.create') }}" class="btn btn-primary">Tambah Baru</a>
+                        <a href="{{ route('penerima.create') }}" class="btn btn-primary">Tambah Baru</a>
                     </div>
                 </div>
                 <div class="card-body p-0">
@@ -29,7 +29,7 @@
                                 @isset($penerima)
                                     @foreach ($penerima as $p)
                                         <tr>
-                                            <td>{{ $p->nama_jenis }}</td>
+                                            <td>{{ $p->nama_penerima }}</td>
                                             <td>
                                                 <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
                                                     data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>

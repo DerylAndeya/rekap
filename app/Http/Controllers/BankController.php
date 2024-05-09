@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bank;
 use App\Http\Requests\StoreBankRequest;
 use App\Http\Requests\UpdateBankRequest;
+use Illuminate\Http\Request;
 
 class BankController extends Controller
 {
@@ -29,7 +30,7 @@ class BankController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBankRequest $request)
+    public function store(Request $request)
     {
         $validated_data=$request->validate([
             'nama_bank'=>'required',
