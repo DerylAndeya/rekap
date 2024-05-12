@@ -33,9 +33,13 @@
                                   <td>{{$barang->nama_barang}}</td>
                                   <td>{{$barang->harga}}</td>
                                   <td>
-                                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                    <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')" data-original-title="Delete"><i class="fas fa-trash"></i></a>
-                                  </td>
+                                    <a href="{{ route('barang.edit', ['barang' => $barang]) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                    <form action="{{ route('barang.destroy', ['barang' => $barang]) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-original-title="Delete"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                    </td>
                               </tr>
                           @endforeach
                       @endisset
@@ -50,24 +54,3 @@
     </section>
 @endsection
 
-@section('sidebar')
-
-    @parent
-
-    <li class="menu-header">Rekap</li>
-    <li class="nav-item dropdown">
-      <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Tabel </span></a>
-      <ul class="dropdown-menu">
-        <li><a class="nav-link" href="layout-default.html">Barang</a></li>
-        <li><a class="nav-link" href="layout-transparent.html">Kendaraan</a></li>
-        <li><a class="nav-link" href="layout-top-navigation.html">Jenis Kendaraan</a></li>
-      </ul>
-    </li>
-    <li class="nav-item dropdown">
-      <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Hasil Rekap </span></a>
-      <ul class="dropdown-menu">
-        <li><a class="nav-link" href="layout-default.html">Bulanan</a></li>
-        <li><a class="nav-link" href="layout-transparent.html">Tahunan</a></li>
-      </ul>
-    </li>
-@endsection

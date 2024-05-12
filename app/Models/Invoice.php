@@ -19,4 +19,23 @@ class Invoice extends Model
         'FK_pemesan',
         'isDeleted',
     ];
+    public function metode_pembayaran()
+    {
+        return $this->belongsTo(MetodePembayaran::class, 'FK_metode_pembayaran', 'id');
+    }
+
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class, 'FK_bank', 'id');
+    }
+
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'FK_pegawai', 'id');
+    }
+
+    public function pemesan()
+    {
+        return $this->belongsTo(Pemesan::class, 'FK_pemesan', 'id');
+    }
 }

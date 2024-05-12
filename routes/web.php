@@ -26,3 +26,4 @@ Route::resource('pengirim',PengirimController::class);
 Route::resource('penerima',PenerimaController::class);
 Route::resource('metode_pembayaran',MetodePembayaranController::class);
 Route::resource('tanda_terima',TandaTerimaController::class);
+Route::get('/export_invoice', [InvoiceController::class, 'exportToExcel'])->name('invoice.export');

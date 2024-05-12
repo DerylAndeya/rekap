@@ -61,29 +61,6 @@
     </section>
 @endsection
 
-@section('sidebar')
-
-    @parent
-
-    <li class="menu-header">Rekap</li>
-    <li class="nav-item dropdown">
-        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Tabel
-            </span></a>
-        <ul class="dropdown-menu">
-            <li><a class="nav-link" href="layout-default.html">Barang</a></li>
-            <li><a class="nav-link" href="layout-transparent.html">Kendaraan</a></li>
-            <li><a class="nav-link" href="layout-top-navigation.html">Jenis Kendaraan</a></li>
-        </ul>
-    </li>
-    <li class="nav-item dropdown">
-        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Hasil
-                Rekap </span></a>
-        <ul class="dropdown-menu">
-            <li><a class="nav-link" href="layout-default.html">Bulanan</a></li>
-            <li><a class="nav-link" href="layout-transparent.html">Tahunan</a></li>
-        </ul>
-    </li>
-@endsection
 @push('customScript')
     <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
     <script src="{{ asset('assets/select2/dist/js/select2.full.min.js') }}"></script>

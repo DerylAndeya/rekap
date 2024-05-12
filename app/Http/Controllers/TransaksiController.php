@@ -2,38 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
+use App\Models\Pemesan;
+use App\Models\Barang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $data = Transaksi::all();
 
-        return view('transaksi/home')->with('transaksi', $data);
+    public function index(Request $request)
+    {
+        $id=$request['id'];
+        $barang= Barang::all();
+        $invoice= Invoice::find($id);
+        $pemesan= Pemesan::find($invoice['FK_pemesan']);
+        $data = Transaksi::where('FK_kode_invoice', $id)
+                ->get();
+
+        return view('transaksi/home')->with(['transaksi' => $data,'invoice'=>$invoice,'pemesan'=>$pemesan,'barangs'=>$barang]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('transaksi/form_create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $validated_data=$request->validate([
             'FK_kode_invoice'=>'required',
             'FK_kode_barang'=>'required',
-            'harga'=>'required',
+            'jumlah'=>'required',
         ]);
 
         $validated_data['isDeleted'] = false;
@@ -44,36 +46,26 @@ class TransaksiController extends Controller
 
         $transaksi->save();
 
-        return redirect()->route('transaksi.index')->with('success','data berhasil disimpan');
+        return redirect()->route('transaksi.index', ['id' => $transaksi['FK_kode_invoice']])->with('success','data berhasil disimpan');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Transaksi $transaksi)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Transaksi $transaksi)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Transaksi $transaksi)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Transaksi $transaksi)
     {
         //
