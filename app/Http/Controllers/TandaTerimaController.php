@@ -75,7 +75,7 @@ class TandaTerimaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTandaTerimaRequest $request, TandaTerima $tandaTerima)
+    public function update(Request $request, TandaTerima $tandaTerima)
     {
         //
     }

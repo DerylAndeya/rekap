@@ -59,7 +59,7 @@ class JenisKendaraanController extends Controller
      */
     public function edit(jenis_kendaraan $jenis_kendaraan)
     {
-        //
+        return view('jenis_kendaraan/form_edit', compact('jenis_kendaraan'));
     }
 
     /**
@@ -67,7 +67,15 @@ class JenisKendaraanController extends Controller
      */
     public function update(Request $request, jenis_kendaraan $jenis_kendaraan)
     {
-        //
+        $request->validate([
+            'nama_jenis' => 'required|string|max:255',
+        ]);
+
+
+        $jenis_kendaraan->nama_jenis = $request->nama_jenis;
+        $jenis_kendaraan->save();
+
+        return redirect()->route('jenis_kendaraan.index')->with('success', 'Kendaraan berhasil diperbarui.');
     }
 
     /**

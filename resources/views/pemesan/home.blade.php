@@ -22,7 +22,6 @@
                   <thead>
                       <tr>
                           <th>Nama</th>
-                          <th>Alamat</th>
                           <th>Action</th>
                       </tr>
                   </thead>
@@ -33,7 +32,7 @@
                                   <td>{{$p->nama_pemesan}}</td>
                                   <td>{{$p->kota}}</td>
                                   <td>
-                                    <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ route('pemesan.edit', $p) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                     <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')" data-original-title="Delete"><i class="fas fa-trash"></i></a>
                                   </td>
                               </tr>

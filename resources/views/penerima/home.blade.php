@@ -31,7 +31,7 @@
                                         <tr>
                                             <td>{{ $p->nama_penerima }}</td>
                                             <td>
-                                                <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
+                                                <a href="{{ route('penerima.edit', $p) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
                                                     data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                 <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip"
                                                     title=""

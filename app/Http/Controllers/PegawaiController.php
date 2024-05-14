@@ -59,7 +59,7 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        //
+        return view('pegawai/form_edit', compact('pegawai'));
     }
 
     /**
@@ -67,7 +67,16 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, Pegawai $pegawai)
     {
-        //
+        $request->validate([
+            'nama_pegawai' => 'required|string|max:255',
+        ]);
+
+
+        $pegawai->nama_pegawai = $request->nama_pegawai;
+
+        $pegawai->save();
+
+        return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil diperbarui.');
     }
 
     /**

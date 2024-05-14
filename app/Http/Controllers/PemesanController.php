@@ -61,7 +61,7 @@ class PemesanController extends Controller
      */
     public function edit(Pemesan $pemesan)
     {
-        //
+        return view('pemesan/form_edit', compact('pemesan'));
     }
 
     /**
@@ -69,7 +69,17 @@ class PemesanController extends Controller
      */
     public function update(Request $request, Pemesan $pemesan)
     {
-        //
+        $request->validate([
+            'nama_pemesan' => 'required|string|max:255',
+            'kota' => 'required|string',
+        ]);
+
+
+        $pemesan->nama_pemesan = $request->nama_pemesan;
+        $pemesan->kota = $request->kota;
+        $pemesan->save();
+
+        return redirect()->route('pemesan.index')->with('success', 'Pemesan berhasil diperbarui.');
     }
 
     /**

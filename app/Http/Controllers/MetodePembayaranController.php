@@ -63,7 +63,7 @@ class MetodePembayaranController extends Controller
      */
     public function edit(MetodePembayaran $metodePembayaran)
     {
-        //
+        return view('metode_pembayaran/form_edit', compact('jenis_kendaraan'));
     }
 
     /**
@@ -71,7 +71,16 @@ class MetodePembayaranController extends Controller
      */
     public function update(UpdateMetodePembayaranRequest $request, MetodePembayaran $metodePembayaran)
     {
-        //
+        $request->validate([
+            'nama_metode' => 'required|string|max:255',
+        ]);
+
+
+        $metodePembayaran->nama_metode = $request->nama_metode;
+
+        $metodePembayaran->save();
+
+        return redirect()->route('metode_pembayaran.index')->with('success', 'Metode berhasil diperbarui.');
     }
 
     /**

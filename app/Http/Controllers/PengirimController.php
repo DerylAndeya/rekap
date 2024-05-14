@@ -63,15 +63,26 @@ class PengirimController extends Controller
      */
     public function edit(Pengirim $pengirim)
     {
-        //
+        return view('pengirim/form_edit', compact('pengirim'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePengirimRequest $request, Pengirim $pengirim)
+    public function update(Request $request, Pengirim $pengirim)
     {
-        //
+        $request->validate([
+            'nama_pengirim' => 'required|string|max:255',
+        ]);
+
+
+        $pengirim->nama_pengirim = $request->nama_pengirim;
+        $pengirim->save();
+
+        return redirect()->route('pengirim.index')->with('success', 'pengirim berhasil diperbarui.');
+
+
     }
 
     /**

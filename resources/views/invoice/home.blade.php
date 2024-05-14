@@ -45,7 +45,7 @@
                                             <td>{{ $i->pegawai->nama_pegawai }}</td>
                                             <td>{{ $i->pemesan->nama_pemesan }}</td>
                                             <td>
-                                                <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
+                                                <a href="{{ route('invoice.edit', ['invoice' => $i]) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
                                                     data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                 <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip"
                                                     title=""

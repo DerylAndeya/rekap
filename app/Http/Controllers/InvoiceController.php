@@ -75,7 +75,11 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        //
+        $metode_pembayaran = MetodePembayaran::all();
+        $bank = Bank::all();
+        $pegawai = Pegawai::all();
+        $pemesan = Pemesan::all();
+        return view('invoice/form_edit')->with(['mps' => $metode_pembayaran, 'invoice' => $invoice, 'banks' => $bank, 'pegawais' => $pegawai, 'pemesans' => $pemesan]);
     }
 
     /**
@@ -83,7 +87,20 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, Invoice $invoice)
     {
-        //
+
+        $validatedData = $request->validate([
+        'nomor_invoice' => 'required|string',
+        'tanggal' => 'required',
+        'FK_metode_pembayaran' => 'required|exists:metode_pembayaran,id',
+        'rekening' => 'required|string',
+        'FK_bank' => 'required|exists:bank,id',
+        'FK_pegawai' => 'required|exists:pegawai,id',
+        'FK_pemesan' => 'required|exists:pemesan,id',
+        ]);
+
+        $invoice->update($validatedData);
+
+        return redirect()->route('invoice.index')->with('success', 'Barang berhasil diperbarui.');
     }
 
     /**

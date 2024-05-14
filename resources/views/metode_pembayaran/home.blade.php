@@ -31,7 +31,7 @@
                                         <tr>
                                             <td>{{ $mp->nama_metode }}</td>
                                             <td>
-                                                <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
+                                                <a href="{{ route('metode_pembayaran.edit', ['metode_pembayaran' => $mp]) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
                                                     data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                 <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip"
                                                     title=""

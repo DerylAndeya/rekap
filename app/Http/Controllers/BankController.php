@@ -41,8 +41,6 @@ class BankController extends Controller
 
         $bank->fill($validated_data);
 
-       // dd($bank);
-
         $bank->save();
 
         return redirect()->route('bank.index')->with('success','data berhasil disimpan');
@@ -60,15 +58,24 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        //
+        return view('bank/form_edit', compact('bank'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBankRequest $request, Bank $bank)
+    public function update(Request $request, Bank $bank)
     {
-        //
+        $request->validate([
+            'nama_bank' => 'required|string|max:255',
+        ]);
+
+
+        $bank->nama_bank = $request->nama_bank;
+
+        $bank->save();
+
+        return redirect()->route('bank.index')->with('success', 'Bank berhasil diperbarui.');
     }
 
     /**
@@ -76,6 +83,11 @@ class BankController extends Controller
      */
     public function destroy(Bank $bank)
     {
-        //
+
+        $bank->isDeleted = true;
+
+        $bank->save();
+
+        return redirect()->route('bank.index')->with('success', 'Data barang berhasil diperbarui');
     }
 }

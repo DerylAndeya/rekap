@@ -4,7 +4,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Jenis Kendaraan</h1>
+            <h1>Pengirim</h1>
         </div>
 
         <div class="section-body">
@@ -31,7 +31,7 @@
                                         <tr>
                                             <td>{{ $p->nama_pengirim }}</td>
                                             <td>
-                                                <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
+                                                <a href="{{ route('pengirim.edit', $p) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
                                                     data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                 <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip"
                                                     title=""
