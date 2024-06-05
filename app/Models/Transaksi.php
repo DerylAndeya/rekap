@@ -15,4 +15,12 @@ class Transaksi extends Model
         'jumlah',
         'isDeleted',
     ];
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class, 'FK_kode_invoice', 'id');
+    }
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class, 'FK_kode_barang', 'id');
+    }
 }

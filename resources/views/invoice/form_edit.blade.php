@@ -16,7 +16,6 @@
                     <form action="{{ route('invoice.update', ['invoice' => $invoice]) }}" method="post">
                         @csrf
                         @method('PATCH')
-
                         <div class="form-group">
                             <label>Nomor Invoice</label>
                             <input type="text" class="form-control" name="nomor_invoice"
@@ -53,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <label>Rekening</label>
-                            <input type="text" class="form-control" name="rekening" value="{{ $invoice->nomor_invoice }}">
+                            <input type="text" class="form-control" name="rekening" value="{{ $invoice->rekening }}">
                         </div>
                         <div class="form-group">
                             <label>Bank</label>

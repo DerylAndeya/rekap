@@ -17,7 +17,7 @@
               @csrf
               <div class="form-group">
                 <label>Barang</label>
-                  <input type="hidden" name="FK_kode_invoice" value="{{$invoice->id}}">
+                  <input type="hidden" name="FK_kode_invoice" value="{{$invoice->id }}">
                   <select name="FK_kode_barang" class="form-control select2 select2-hidden-accessible"
                       tabindex="-1" aria-hidden="true">
                       @forelse ($barangs as $barang)
@@ -66,15 +66,15 @@
                         <div class="col-md-6">
                           <address>
                             <strong>Billed To:</strong><br>
-                              {{ $pemesan->nama_pemesan }}<br>
-                              {{ $pemesan->kota }}, Indonesia<br>
+                              {{ $invoice->pemesan->nama_pemesan }}<br>
+                              {{ $invoice->pemesan->kota }}, Indonesia<br>
                           </address>
                         </div>
                         <div class="col-md-6 text-md-right">
                           <address>
                             <strong>Shipped To:</strong><br>
-                            {{ $pemesan->nama_pemesan }}<br>
-                            {{ $pemesan->kota }}
+                            {{ $invoice->pemesan->nama_pemesan }}<br>
+                            {{ $invoice->pemesan->kota }}
                           </address>
                         </div>
                       </div>
@@ -101,55 +101,66 @@
                       <div class="section-title">Order Summary</div>
 
                       {{-- POP UP FORM --}}
-                      <p class="section-lead">Add new items</p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="">+</button>
+                      <p class="section-lead"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="">+</button> Add new items</p>
 
                       {{-- table --}}
                       <div class="table-responsive">
                         <table class="table table-striped table-hover table-md">
-                          <tr>
-                            <th data-width="40">#</th>
-                            <th>Item</th>
-                            <th class="text-center">Price</th>
-                            <th class="text-center">Quantity</th>
-                            <th class="text-right">Totals</th>
-                            <th class="text-right">Remove</th>
-                          </tr>
+                            <thead>
+                                <tr>
+                                    <th data-width="40">#</th>
+                                    <th class="text-center">Item</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-right">Totals</th>
+                                    <th class="text-right">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              @php $total = 0; @endphp
+                                @isset($transaksi)
+                                    @foreach ($transaksi as $index => $t)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td class="text-center">{{ $t->barang->nama_barang }}</td>
+                                            <td class="text-center">{{ $t->barang->harga }}</td>
+                                            <td class="text-center">{{ $t->jumlah }}</td>
+                                            <td class="text-right">{{ $t->jumlah * $t->barang->harga }}</td>
+                                            <td class="text-right">
+                                              <form action="{{ route('transaksi.destroy', $t) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                  @csrf
+                                                  @method('DELETE')
+                                                  <button type="submit" class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete">
+                                                      <i class="fas fa-trash"></i>
+                                                  </button>
+                                              </form>
+                                          </td>
 
-
-                          @isset($transaksi)
-                              @foreach ($transaksi as $t)
-                                  <tr>
-                                      <td>{{$t->nama_barang}}</td>
-                                      <td>{{$t->harga}}</td>
-                                      <td>{{$t->jumlah}}</td>
-                                      <td>{{$t->jumlah * $t->harga}}</td>
-                                      <td>
-                                        <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-confirm-yes="alert('Deleted')" data-original-title="Delete"><i class="fas fa-trash"></i></a>
-                                      </td>
-                                  </tr>
-                              @endforeach
-                          @endisset
-
-
+                                        </tr>
+                                        @php $total+=($t->jumlah * $t->barang->harga)@endphp
+                                    @endforeach
+                                @endisset
+                            </tbody>
                         </table>
-                      </div>
+                    </div>
                       <div class="row mt-4">
                         <div class="col-lg-8">
-                          <div class="section-title">Payment Method</div>
+                          <div class="section-title">Payment Method : {{$invoice->metode_pembayaran->nama_metode}}</div>
+
                         </div>
                         <div class="col-lg-4 text-right">
                           <div class="invoice-detail-item">
                             <div class="invoice-detail-name">Subtotal</div>
-                            <div class="invoice-detail-value">Rp </div>
+                            <div class="invoice-detail-value">Rp {{$total}} </div>
                           </div>
                           <div class="invoice-detail-item">
                             <div class="invoice-detail-name">Shipping</div>
-                            <div class="invoice-detail-value">$15</div>
+                            <div class="invoice-detail-value">Rp {{ 0 }}</div>
                           </div>
                           <hr class="mt-2 mb-2">
                           <div class="invoice-detail-item">
                             <div class="invoice-detail-name">Total</div>
-                            <div class="invoice-detail-value invoice-detail-value-lg">Rp </div>
+                            <div class="invoice-detail-value invoice-detail-value-lg">Rp {{$total}}</div>
                           </div>
                         </div>
                       </div>

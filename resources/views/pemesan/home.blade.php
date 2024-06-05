@@ -22,6 +22,7 @@
                   <thead>
                       <tr>
                           <th>Nama</th>
+                          <th>Kota</th>
                           <th>Action</th>
                       </tr>
                   </thead>

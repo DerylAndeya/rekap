@@ -14,13 +14,12 @@ class TransaksiController extends Controller
     public function index(Request $request)
     {
         $id=$request['id'];
-        $barang= Barang::all();
-        $invoice= Invoice::find($id);
-        $pemesan= Pemesan::find($invoice['FK_pemesan']);
+        $barangs=Barang::all();
+        $invoice=Invoice::find($id);
         $data = Transaksi::where('FK_kode_invoice', $id)
                 ->get();
-
-        return view('transaksi/home')->with(['transaksi' => $data,'invoice'=>$invoice,'pemesan'=>$pemesan,'barangs'=>$barang]);
+        // dd($data);
+        return view('transaksi/home')->with(['transaksi' => $data,'barangs' => $barangs,'invoice' => $invoice]);
     }
 
 
@@ -69,5 +68,9 @@ class TransaksiController extends Controller
     public function destroy(Transaksi $transaksi)
     {
         //
+        $ids=$transaksi->invoice->id;
+        $transaksi->delete();
+
+        return redirect()->route('transaksi.index', ['id' => $ids])->with('success','data berhasil disimpan');
     }
 }

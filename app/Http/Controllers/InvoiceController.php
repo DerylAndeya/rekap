@@ -41,7 +41,7 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $validated_data = $request->validate([
-            'nomor_invoice' => 'required',
+            'nomor_invoice' => 'required|unique:invoice,nomor_invoice',
             'tanggal' => 'required',
             'FK_metode_pembayaran' => 'required',
             'rekening' => 'required',
@@ -89,7 +89,7 @@ class InvoiceController extends Controller
     {
 
         $validatedData = $request->validate([
-        'nomor_invoice' => 'required|string',
+        'nomor_invoice' => 'required|string|unique:invoice,nomor_invoice',
         'tanggal' => 'required',
         'FK_metode_pembayaran' => 'required|exists:metode_pembayaran,id',
         'rekening' => 'required|string',

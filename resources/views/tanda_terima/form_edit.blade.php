@@ -13,8 +13,9 @@
                   <h4>Input Text</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('tanda_terima.store')}}" method="post">
+                    <form action="{{route('tanda_terima.update', $tanda_terima)}}" method="post">
                         @csrf
+                        @method('PATCH')
                         <div class="form-group">
                             <label>Kode Invoice</label>
                             <select name="FK_kode_invoice">

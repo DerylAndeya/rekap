@@ -10,6 +10,7 @@ use App\Http\Controllers\PengirimController;
 use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\TandaTerimaController;
+use App\Http\Controllers\RekapController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/Home', function () {
@@ -27,3 +28,4 @@ Route::resource('penerima',PenerimaController::class);
 Route::resource('metode_pembayaran',MetodePembayaranController::class);
 Route::resource('tanda_terima',TandaTerimaController::class);
 Route::get('/export_invoice', [InvoiceController::class, 'exportToExcel'])->name('invoice.export');
+Route::get('/rekap_penjualan', [RekapController::class, 'index'])->name('rekap.index');

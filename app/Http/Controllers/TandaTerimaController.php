@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\TandaTerima;
 use App\Http\Requests\StoreTandaTerimaRequest;
 use App\Http\Requests\UpdateTandaTerimaRequest;
+use App\Models\Invoice;
+use App\Models\Jenis_kendaraan;
+use App\Models\Pegawai;
+use App\Models\Penerima;
+use App\Models\Pengirim;
 use Illuminate\Http\Request;
 
 class TandaTerimaController extends Controller
@@ -69,7 +74,13 @@ class TandaTerimaController extends Controller
      */
     public function edit(TandaTerima $tandaTerima)
     {
-        //
+        $invs = Invoice::all();
+        $jks = Jenis_kendaraan::all();
+        $pgws = Pegawai::all();
+        $pgrs = Pengirim::all();
+        $pnrs = Penerima::all();
+        dd($invs);
+        return view('tanda_terima/form_edit')->with(['tanda_terima' => $tandaTerima, 'invoices' => $invs, 'jenis_kendaraans' => $jks, 'pegawais' => $pgws, 'pengirims' => $pgrs, 'penerimas' => $pnrs]);
     }
 
     /**
