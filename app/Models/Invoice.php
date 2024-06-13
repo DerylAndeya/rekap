@@ -13,12 +13,12 @@ class Invoice extends Model
         'nomor_invoice',
         'tanggal',
         'FK_metode_pembayaran',
-        'rekening',
         'FK_bank',
         'FK_pegawai',
         'FK_pemesan',
         'isDeleted',
     ];
+
     public function metode_pembayaran()
     {
         return $this->belongsTo(MetodePembayaran::class, 'FK_metode_pembayaran', 'id');

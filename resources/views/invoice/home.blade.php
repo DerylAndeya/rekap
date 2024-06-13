@@ -25,7 +25,6 @@
                                     <th>Nomor</th>
                                     <th>Tanggal</th>
                                     <th>Metode</th>
-                                    <th>Rekening</th>
                                     <th>Bank</th>
                                     <th>Pegawai</th>
                                     <th>Pemesan </th>
@@ -40,7 +39,6 @@
                                             <td>{{ $i->nomor_invoice }}</td>
                                             <td>{{ $i->tanggal}}</td>
                                             <td>{{ $i->metode_pembayaran->nama_metode }}</td>
-                                            <td>{{ $i->rekening }}</td>
                                             <td>{{ $i->bank->nama_bank }}</td>
                                             <td>{{ $i->pegawai->nama_pegawai }}</td>
                                             <td>{{ $i->pemesan->nama_pemesan }}</td>

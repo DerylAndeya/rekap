@@ -16,10 +16,6 @@
                     <form action="{{ route('invoice.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label>Nomor Invoice</label>
-                            <input type="text" class="form-control" name="nomor_invoice">
-                        </div>
-                        <div class="form-group">
                             <label>Tanggal</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -28,7 +24,7 @@
                                     </div>
                                 </div>
 
-                                <input type="date" class="form-control datepicker" name="tanggal" value="" />
+                                <input type="date" class="form-control datepicker" name="tanggal" value="" id="tanggal" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -47,10 +43,6 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Rekening</label>
-                            <input type="text" class="form-control" name="rekening">
-                        </div>
-                        <div class="form-group">
                             <label>Bank</label>
                             <select name="FK_bank" class="form-control select2 select2-hidden-accessible" tabindex="-1"
                                 aria-hidden="true">
@@ -67,16 +59,8 @@
                         </div>
                         <div class="form-group">
                             <label>Pegawai</label>
-                            <select name="FK_pegawai" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
-                                @forelse ($pegawais as $p)
-                                    <option value="{{ $p->id }}">
-                                        {{ $p->nama_pegawai }}
-                                    </option>
-                                @empty
-                                    <option value="" disabled>
-                                        Kosong
-                                    </option>
-                                @endforelse
+                            <select name="FK_pegawai" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" disabled>
+                                <option value='{{Auth::user()->id}}' selected>{{auth()->user()->name}}</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -141,4 +125,12 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     {{-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script> --}}
+@endpush
+@push('customScript')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('tanggal').setAttribute('min', today);
+        });
+    </script>
 @endpush

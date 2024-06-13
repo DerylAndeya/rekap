@@ -12,8 +12,10 @@
             <li class="nav-item dropdown">
               <a href="{{route('rekap.index')}}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
+            @can('is-admin')
+
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Tabel
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Tabel Master
                     </span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{route('barang.index')}}">Barang</a></li>
@@ -23,13 +25,20 @@
                     <li><a class="nav-link" href="{{route('pemesan.index')}}">Pemesan</a></li>
                     <li><a class="nav-link" href="{{route('penerima.index')}}">Penerima</a></li>
                     <li><a class="nav-link" href="{{route('bank.index')}}">Bank</a></li>
-                    <li><a class="nav-link" href="{{route('invoice.index')}}">Invoice</a></li>
                     <li><a class="nav-link" href="{{route('pengirim.index')}}">Pengirim</a></li>
-                    <li><a class="nav-link" href="{{route('tanda_terima.index')}}">Tanda Terima</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Hasil
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Hasil Rekap
+                    </span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{route('invoice.index')}}">Invoice</a></li>
+                    <li><a class="nav-link" href="{{route('tanda_terima.index')}}">Tanda Terima</a></li>
+                </ul>
+            </li>
+            @endcan
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Histori
                         Rekap </span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="layout-default.html">Bulanan</a></li>
@@ -41,7 +50,6 @@
                   <a href="#" class="nav-link"><i class="fas fa-table"></i><span>User List</span></a>
                 </li>
             @endcan
-
         @show
 
 

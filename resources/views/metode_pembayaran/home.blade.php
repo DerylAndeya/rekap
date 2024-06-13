@@ -21,6 +21,7 @@
                         <table class="table table-striped mb-0">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Metode</th>
                                     <th>Action</th>
                                 </tr>
@@ -29,6 +30,7 @@
                                 @isset($metode_pembayaran)
                                     @foreach ($metode_pembayaran as $mp)
                                         <tr>
+                                            <td>{{ $mp->id }}</td>
                                             <td>{{ $mp->nama_metode }}</td>
                                             <td>
                                                 <a href="{{ route('metode_pembayaran.edit', ['metode_pembayaran' => $mp]) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""

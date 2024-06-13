@@ -51,10 +51,6 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Rekening</label>
-                            <input type="text" class="form-control" name="rekening" value="{{ $invoice->rekening }}">
-                        </div>
-                        <div class="form-group">
                             <label>Bank</label>
                             <select name="FK_bank" class="form-control select2 select2-hidden-accessible" tabindex="-1"
                                 aria-hidden="true">

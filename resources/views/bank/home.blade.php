@@ -21,6 +21,7 @@
                 <table class="table table-striped mb-0">
                   <thead>
                       <tr>
+                          <th>ID</th>
                           <th>Nama</th>
                           <th>Action</th>
                       </tr>
@@ -29,6 +30,7 @@
                       @isset($bank)
                           @foreach ($bank as $b)
                               <tr>
+                                  <td>{{$b->id}}</td>
                                   <td>{{$b->nama_bank}}</td>
                                   <td>
                                     <a href="{{ route('bank.edit', ['bank' => $b]) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>

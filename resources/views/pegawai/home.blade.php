@@ -21,6 +21,7 @@
                 <table class="table table-striped mb-0">
                   <thead>
                       <tr>
+                          <th>ID</th>
                           <th>Nama</th>
                           <th>Action</th>
                       </tr>
@@ -29,6 +30,7 @@
                       @isset($pegawai)
                           @foreach ($pegawai as $p)
                               <tr>
+                                  <td>{{$p->id}}</td>
                                   <td>{{$p->nama_pegawai}}</td>
                                   <td>
                                     <a href="{{ route('pegawai.edit', ['pegawai' => $p]) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>

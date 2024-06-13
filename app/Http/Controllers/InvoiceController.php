@@ -10,6 +10,7 @@ use App\Models\Pemesan;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Illuminate\Support\Carbon;
 
 class InvoiceController extends Controller
 {
@@ -42,9 +43,8 @@ class InvoiceController extends Controller
     {
         $validated_data = $request->validate([
             'nomor_invoice' => 'required|unique:invoice,nomor_invoice',
-            'tanggal' => 'required',
+            'tanggal' => 'required|date|date_format:Y-m-d|after_or_equal:' . Carbon::today()->format('Y-m-d'),
             'FK_metode_pembayaran' => 'required',
-            'rekening' => 'required',
             'FK_bank' => 'required',
             'FK_pegawai' => 'required',
             'FK_pemesan' => 'required',
@@ -90,9 +90,8 @@ class InvoiceController extends Controller
 
         $validatedData = $request->validate([
         'nomor_invoice' => 'required|string|unique:invoice,nomor_invoice',
-        'tanggal' => 'required',
+        'tanggal' => 'required|date|date_format:Y-m-d|after_or_equal:' . Carbon::today()->format('Y-m-d'),
         'FK_metode_pembayaran' => 'required|exists:metode_pembayaran,id',
-        'rekening' => 'required|string',
         'FK_bank' => 'required|exists:bank,id',
         'FK_pegawai' => 'required|exists:pegawai,id',
         'FK_pemesan' => 'required|exists:pemesan,id',
@@ -125,10 +124,9 @@ class InvoiceController extends Controller
         $sheet->setCellValue('A1', 'nomor invoice');
         $sheet->setCellValue('B1', 'tanggal');
         $sheet->setCellValue('C1', 'metode pembayaran');
-        $sheet->setCellValue('D1', 'rekening');
-        $sheet->setCellValue('E1', 'bank');
-        $sheet->setCellValue('F1', 'pegawai');
-        $sheet->setCellValue('G1', 'pemesan');
+        $sheet->setCellValue('D1', 'bank');
+        $sheet->setCellValue('E1', 'pegawai');
+        $sheet->setCellValue('F1', 'pemesan');
 
 
         // Populate data
@@ -137,10 +135,9 @@ class InvoiceController extends Controller
             $sheet->setCellValue('A' . $row, $user->nomor_invoice);
             $sheet->setCellValue('B' . $row, $user->tanggal);
             $sheet->setCellValue('C' . $row, $user->metode_pembayaran['nama_metode']);
-            $sheet->setCellValue('D' . $row, $user->rekening);
-            $sheet->setCellValue('E' . $row, $user->bank['nama_bank']);
-            $sheet->setCellValue('F' . $row, $user->pegawai['nama_pegawai']);
-            $sheet->setCellValue('G' . $row, $user->pemesan['nama_pemesan']);
+            $sheet->setCellValue('D' . $row, $user->bank['nama_bank']);
+            $sheet->setCellValue('E' . $row, $user->pegawai['nama_pegawai']);
+            $sheet->setCellValue('F' . $row, $user->pemesan['nama_pemesan']);
             $row++;
         }
 

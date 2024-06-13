@@ -21,6 +21,7 @@
                 <table class="table table-striped mb-0">
                   <thead>
                       <tr>
+                          <th>ID</th>
                           <th>Nama</th>
                           <th>Harga</th>
                           <th>Action</th>
@@ -30,6 +31,7 @@
                       @isset($barangs)
                           @foreach ($barangs as $barang)
                               <tr>
+                                  <td>{{$barang->id}}</td>
                                   <td>{{$barang->nama_barang}}</td>
                                   <td>{{$barang->harga}}</td>
                                   <td>

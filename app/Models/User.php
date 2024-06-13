@@ -44,4 +44,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function assignRole($role)
+    {
+        $this->role = $role;
+        $this->save();
+    }
 }

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
+
             $table->string('nama_barang');
             $table->integer('harga');
             $table->boolean('isDeleted')->default(0)->nullable(false);
@@ -46,7 +47,6 @@ return new class extends Migration
             $table->string('nomor_invoice');
             $table->date('tanggal');
             $table->unsignedBigInteger('FK_metode_pembayaran');
-            $table->string('rekening');
             $table->unsignedBigInteger('FK_bank');
             $table->unsignedBigInteger('FK_pegawai');
             $table->unsignedBigInteger('FK_pemesan');

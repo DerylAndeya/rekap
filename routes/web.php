@@ -12,9 +12,11 @@ use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\TandaTerimaController;
 use App\Http\Controllers\RekapController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/Home', function () {
-    return view('barang/index');
+// Route::get('login', function() {
+//     return view('auth.login');
+// });
+Route::get('/', function () {
+    return redirect()->route('rekap.index');
 });
 Route::resource('barang',BarangController::class);
 Route::resource('jenis_kendaraan',JenisKendaraanController::class);

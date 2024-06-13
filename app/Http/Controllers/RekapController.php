@@ -72,7 +72,7 @@ class RekapController extends Controller
             ->whereIn('FK_kode_invoice', $invoiceIds)
             ->get();
 
-        // Calculate total revenue
+
         $totalRevenue = 0;
         foreach ($data as $transaction) {
             $barang = DB::table('barang')->where('id', $transaction->FK_kode_barang)->first();
@@ -81,7 +81,7 @@ class RekapController extends Controller
             }
         }
 
-        // Return the total revenue
+
         return $totalRevenue;
     }
 
@@ -158,32 +158,44 @@ class RekapController extends Controller
     }
     //
     public function totalOrders()
-    {
-        $data = Invoice::all();
-        $totalRows = $data->count();
-        return $totalRows;
+{
+    $today = now()->toDateString();
+    $data = Invoice::whereDate('created_at', $today)->get();
+    $totalRows = $data->count();
+    return $totalRows;
+}
 
+public function balance()
+{
+    $today = now()->toDateString();
+    $invoices = Invoice::whereDate('tanggal', [$today])->get();
+                $invoice_ids = $invoices->pluck('id');
+
+                $transaksi = Transaksi::whereIn('FK_kode_invoice', $invoice_ids)->with('barang')->get();
+    $totalRevenue = 0;
+
+    foreach ($transaksi as $transaction) {
+        $barang = DB::table('barang')->where('id', $transaction->FK_kode_barang)->first();
+        if ($barang) {
+            $totalRevenue += $barang->harga * $transaction->jumlah;
+        }
     }
 
-    public function balance()
-    {
-        $data = Transaksi::all();
-        $totalRevenue = 0;
+    $formattedRevenue = number_format($totalRevenue, 0, ',', '.');
 
-        foreach ($data as $transaction) {
-            $barang = DB::table('barang')->where('id', $transaction->FK_kode_barang)->first();
-            if ($barang) {
-                $totalRevenue += $barang->harga * $transaction->jumlah;
-            }}
-        return $totalRevenue;
-    }
+    return $formattedRevenue;
+}
 
     public function sales()
 {
-    $data = Transaksi::all();
+    $today = now()->toDateString();
+    $invoices = Invoice::whereDate('tanggal', [$today])->get();
+                $invoice_ids = $invoices->pluck('id');
+
+                $transaksi = Transaksi::whereIn('FK_kode_invoice', $invoice_ids)->with('barang')->get();
     $totalSales = 0;
 
-    foreach ($data as $transaction) {
+    foreach ($transaksi as $transaction) {
         $barang = DB::table('barang')->where('id', $transaction->FK_kode_barang)->first();
         if ($barang) {
             $totalSales += $transaction->jumlah;

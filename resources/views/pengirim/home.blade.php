@@ -21,6 +21,7 @@
                         <table class="table table-striped mb-0">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Nama</th>
                                     <th>Action</th>
                                 </tr>
@@ -29,6 +30,7 @@
                                 @isset($pengirim)
                                     @foreach ($pengirim as $p)
                                         <tr>
+                                            <td>{{ $p->id }}</td>
                                             <td>{{ $p->nama_pengirim }}</td>
                                             <td>
                                                 <a href="{{ route('pengirim.edit', $p) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
