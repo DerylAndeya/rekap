@@ -33,6 +33,8 @@ class PemesanController extends Controller
 
         $validated_data=$request->validate([
             'nama_pemesan'=>'required',
+            'alamat'=>'required',
+            'no_telp'=>'required',
             'kota'=>'required',
         ]);
         $validated_data['isDeleted'] = false;
@@ -71,11 +73,15 @@ class PemesanController extends Controller
     {
         $request->validate([
             'nama_pemesan' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:255',
             'kota' => 'required|string',
         ]);
 
 
         $pemesan->nama_pemesan = $request->nama_pemesan;
+        $pemesan->alamat = $request->alamat;
+        $pemesan->no_telp = $request->no_telp;
         $pemesan->kota = $request->kota;
         $pemesan->save();
 

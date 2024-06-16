@@ -40,7 +40,7 @@
                                             <td>{{ $i->tanggal}}</td>
                                             <td>{{ $i->metode_pembayaran->nama_metode }}</td>
                                             <td>{{ $i->bank->nama_bank }}</td>
-                                            <td>{{ $i->pegawai->nama_pegawai }}</td>
+                                            <td>{{ $i->pegawai->name }}</td>
                                             <td>{{ $i->pemesan->nama_pemesan }}</td>
                                             <td>
                                                 <a href="{{ route('invoice.edit', ['invoice' => $i]) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""

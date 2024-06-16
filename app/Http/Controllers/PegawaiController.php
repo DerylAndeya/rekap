@@ -23,7 +23,6 @@ class PegawaiController extends Controller
     public function create(){
         return view('pegawai/form_create');//}
 
-
     }
 
     /**

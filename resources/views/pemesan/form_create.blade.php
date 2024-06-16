@@ -20,18 +20,21 @@
                             <input type="text" class="form-control" name="nama_pemesan">
                         </div>
                         <div class="form-group">
+                            <label>Alamat</label>
+                            <input type="text" class="form-control" name="alamat">
+                        </div>
+                        <div class="form-group">
+                            <label>Telepon</label>
+                            <input type="text" class="form-control" name="no_telp">
+                        </div>
+                        <div class="form-group">
                             <label>Kota</label>
                             <input type="text" class="form-control" name="kota">
                         </div>
                         <button type="submit" class="btn btn-primary col-1">Submit</button>
                         </div>
                     </form>
-
-
-
               </div>
-
-
         </div>
     </section>
 @endsection

@@ -12,10 +12,6 @@ class add_pegawai extends Seeder
      */
     public function run(): void
     {
-        DB::table('pegawai')->insert([
-            'nama_pegawai' => 'Truk Toyota',
-            'isDeleted' => '0',
-        ]);
-        //
+
     }
 }

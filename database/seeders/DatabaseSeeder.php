@@ -13,7 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call(add_barang_default::class);
+        $this->call(add_pemesan::class);
+        $this->call(BankSeeder::class);
+        $this->call(MetodePembayaranSeeder::class);
         $this->call(UserSeeder::class);
     }
 }

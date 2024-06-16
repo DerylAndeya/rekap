@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
-
             $table->string('nama_barang');
             $table->integer('harga');
             $table->boolean('isDeleted')->default(0)->nullable(false);
@@ -30,6 +29,8 @@ return new class extends Migration
         Schema::create('pemesan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pemesan');
+            $table->string('alamat');
+            $table->string('no_telp');
             $table->string('kota');
             $table->boolean('isDeleted')->default(0)->nullable(false);
             $table->timestamps();

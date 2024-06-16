@@ -18,16 +18,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('rekap.index');
 });
-Route::resource('barang',BarangController::class);
-Route::resource('jenis_kendaraan',JenisKendaraanController::class);
-Route::resource('transaksi',TransaksiController::class);
-Route::resource('pemesan',PemesanController::class);
-Route::resource('pegawai',PegawaiController::class);
-Route::resource('invoice',InvoiceController::class);
-Route::resource('bank',BankController::class);
-Route::resource('pengirim',PengirimController::class);
-Route::resource('penerima',PenerimaController::class);
-Route::resource('metode_pembayaran',MetodePembayaranController::class);
-Route::resource('tanda_terima',TandaTerimaController::class);
-Route::get('/export_invoice', [InvoiceController::class, 'exportToExcel'])->name('invoice.export');
-Route::get('/rekap_penjualan', [RekapController::class, 'index'])->name('rekap.index');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('barang',BarangController::class);
+    Route::resource('jenis_kendaraan',JenisKendaraanController::class);
+    Route::resource('transaksi',TransaksiController::class);
+    Route::resource('pemesan',PemesanController::class);
+    Route::resource('pegawai',PegawaiController::class);
+    Route::resource('invoice',InvoiceController::class);
+    Route::resource('bank',BankController::class);
+    Route::resource('pengirim',PengirimController::class);
+    Route::resource('penerima',PenerimaController::class);
+    Route::resource('metode_pembayaran',MetodePembayaranController::class);
+    Route::resource('tanda_terima',TandaTerimaController::class);
+    Route::get('/export_invoice', [InvoiceController::class, 'exportToExcel'])->name('invoice.export');
+    Route::get('/rekap_penjualan', [RekapController::class, 'index'])->name('rekap.index');
+});

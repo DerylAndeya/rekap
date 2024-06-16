@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('FK_metode_pembayaran')->references('id')->on('metode_pembayaran');
             $table->foreign('FK_bank')->references('id')->on('bank');
             $table->foreign('FK_pemesan')->references('id')->on('pemesan');
-            $table->foreign('FK_pegawai')->references('id')->on('pegawai');
+            $table->foreign('FK_pegawai')->references('id')->on('users');
         });
 
         Schema::table('transaksi', function (Blueprint $table) {

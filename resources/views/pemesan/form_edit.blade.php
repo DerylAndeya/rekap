@@ -21,6 +21,14 @@
                             <input type="text" class="form-control" name="nama_pemesan" value="{{$pemesan->nama_pemesan}}">
                         </div>
                         <div class="form-group">
+                            <label>Alamat</label>
+                            <input type="text" class="form-control" name="alamat" value="{{$pemesan->alamat}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Telepon</label>
+                            <input type="text" class="form-control" name="no_telp" value="{{$pemesan->no_telp}}">
+                        </div>
+                        <div class="form-group">
                             <label>Kota</label>
                             <input type="text" class="form-control" name="kota" value="{{$pemesan->kota}}">
                         </div>

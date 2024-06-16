@@ -23,6 +23,8 @@
                       <tr>
                           <th>ID</th>
                           <th>Nama</th>
+                          <th>Alamat</th>
+                          <th>Telepon</th>
                           <th>Kota</th>
                           <th>Action</th>
                       </tr>
@@ -33,6 +35,8 @@
                               <tr>
                                   <td>{{$p->id}}</td>
                                   <td>{{$p->nama_pemesan}}</td>
+                                  <td>{{$p->alamat}}</td>
+                                  <td>{{$p->no_telp}}</td>
                                   <td>{{$p->kota}}</td>
                                   <td>
                                     <a href="{{ route('pemesan.edit', $p) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>

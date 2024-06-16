@@ -17,11 +17,6 @@
                         @csrf
                         @method('PATCH')
                         <div class="form-group">
-                            <label>Nomor Invoice</label>
-                            <input type="text" class="form-control" name="nomor_invoice"
-                                value="{{ $invoice->nomor_invoice }}">
-                        </div>
-                        <div class="form-group">
                             <label>Tanggal</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -66,22 +61,7 @@
                                 @endforelse
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Pegawai</label>
-                            <select name="FK_pegawai" class="form-control select2 select2-hidden-accessible" tabindex="-1"
-                                aria-hidden="true">
-                                @forelse ($pegawais as $p)
-                                    <option value="{{ $p->id }}"
-                                        {{ $invoice->FK_pegawai ==  $p->id ? 'selected' : '' }}>
-                                        {{ $p->nama_pegawai }}
-                                    </option>
-                                @empty
-                                    <option value="" disabled>
-                                        Kosong
-                                    </option>
-                                @endforelse
-                            </select>
-                        </div>
+                        <input type="hidden" name="FK_pegawai" value="{{auth()->user()->id}}">
                         <div class="form-group">
                             <label>Pemesan</label>
                             <select name="FK_pemesan" class="form-control select2 select2-hidden-accessible" tabindex="-1"

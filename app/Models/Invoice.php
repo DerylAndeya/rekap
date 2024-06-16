@@ -31,7 +31,7 @@ class Invoice extends Model
 
     public function pegawai()
     {
-        return $this->belongsTo(Pegawai::class, 'FK_pegawai', 'id');
+        return $this->belongsTo(User::class, 'FK_pegawai', 'id');
     }
 
     public function pemesan()

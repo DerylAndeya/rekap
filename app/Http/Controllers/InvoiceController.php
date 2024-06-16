@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -41,8 +42,8 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated_data = $request->validate([
-            'nomor_invoice' => 'required|unique:invoice,nomor_invoice',
             'tanggal' => 'required|date|date_format:Y-m-d|after_or_equal:' . Carbon::today()->format('Y-m-d'),
             'FK_metode_pembayaran' => 'required',
             'FK_bank' => 'required',
@@ -52,6 +53,10 @@ class InvoiceController extends Controller
         $validated_data['isDeleted'] = false;
 
         $invoice = new Invoice();
+
+        $kode_inv = 'INV' . $validated_data['FK_pemesan'] . date('Ymd') . date('His');
+
+        $invoice['nomor_invoice'] = $kode_inv;
 
         $invoice->fill($validated_data);
 
@@ -89,11 +94,10 @@ class InvoiceController extends Controller
     {
 
         $validatedData = $request->validate([
-        'nomor_invoice' => 'required|string|unique:invoice,nomor_invoice',
         'tanggal' => 'required|date|date_format:Y-m-d|after_or_equal:' . Carbon::today()->format('Y-m-d'),
         'FK_metode_pembayaran' => 'required|exists:metode_pembayaran,id',
         'FK_bank' => 'required|exists:bank,id',
-        'FK_pegawai' => 'required|exists:pegawai,id',
+        'FK_pegawai' => 'required|exists:users,id',
         'FK_pemesan' => 'required|exists:pemesan,id',
         ]);
 

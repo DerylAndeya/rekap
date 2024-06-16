@@ -13,9 +13,10 @@ class add_pemesan extends Seeder
     public function run(): void
     {
         DB::table('pemesan')->insert([
-            'nama_pemesan' => 'Truk Toyota',
-            'plat' => 'BG 1283 ABC',
-            'FK_jenis_kendaraan' => '1',
+            'nama_pemesan' => 'Akiong',
+            'alamat' => 'Jl. Tulung Agung',
+            'no_telp' => '0896644444',
+            'kota' => 'Palembang',
             'isDeleted' => '0',
         ]);
         //

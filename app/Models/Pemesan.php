@@ -11,6 +11,8 @@ class Pemesan extends Model
     protected $table="pemesan";
     protected $fillable = [
         'nama_pemesan',
+        'alamat',
+        'no_telp',
         'kota',
         'isDeleted',
     ];

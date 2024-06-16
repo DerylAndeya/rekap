@@ -57,12 +57,7 @@
                                 @endforelse
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Pegawai</label>
-                            <select name="FK_pegawai" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true" disabled>
-                                <option value='{{Auth::user()->id}}' selected>{{auth()->user()->name}}</option>
-                            </select>
-                        </div>
+                            <input type="hidden" name="FK_pegawai" value="{{auth()->user()->id}}">
                         <div class="form-group">
                             <label>Pemesan</label>
                             <select name="FK_pemesan" class="form-control select2 select2-hidden-accessible" tabindex="-1"
