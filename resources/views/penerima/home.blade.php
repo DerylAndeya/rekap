@@ -35,11 +35,11 @@
                                             <td>
                                                 <a href="{{ route('penerima.edit', $p) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
                                                     data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip"
-                                                    title=""
-                                                    data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('Deleted')" data-original-title="Delete"><i
-                                                        class="fas fa-trash"></i></a>
+                                                    <form action="{{ route('penerima.destroy', ['penerima' => $p]) }}" method="POST" style="display: inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                    </form>
                                             </td>
                                         </tr>
                                     @endforeach

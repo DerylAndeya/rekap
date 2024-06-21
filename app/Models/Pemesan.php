@@ -4,16 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pemesan extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table="pemesan";
-    protected $fillable = [
-        'nama_pemesan',
-        'alamat',
-        'no_telp',
-        'kota',
-        'isDeleted',
-    ];
+    protected $guarded=[];
 }

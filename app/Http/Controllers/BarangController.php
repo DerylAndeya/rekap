@@ -13,18 +13,15 @@ class BarangController extends Controller
     public function index()
     {
         $data = Barang::all();
-
         return view('barangs/home')->with('barangs', $data);
     }
-
-
 
     public function create()
     {
         return view('barangs/form_create'); //}
-
-
     }
+
+
     public function store(Request $request)
     { //
 
@@ -33,13 +30,7 @@ class BarangController extends Controller
             'harga' => 'required',
         ]);
 
-        $validated_data['isDeleted'] = false;
-
-        $barang = new Barang();
-
-        $barang->fill($validated_data);
-
-        $barang->save();
+        Barang::create($validated_data);
 
         return redirect()->route('barang.index')->with('success', 'data berhasil disimpan');
     }

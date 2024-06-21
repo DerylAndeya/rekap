@@ -15,7 +15,6 @@ class PengirimController extends Controller
     public function index()
     {
         $data = Pengirim::all();
-
         return view('pengirim/home')->with('pengirim', $data);
 
     }
@@ -36,15 +35,7 @@ class PengirimController extends Controller
         $validated_data=$request->validate([
             'nama_pengirim'=>'required',
         ]);
-        $validated_data['isDeleted'] = false;
-
-        $pengirim=new Pengirim();
-
-        $pengirim->fill($validated_data);
-
-       // dd($pengirim);
-
-        $pengirim->save();
+        Pengirim::create($validated_data);
 
         return redirect()->route('pengirim.index')->with('success','data berhasil disimpan');
 
@@ -90,6 +81,10 @@ class PengirimController extends Controller
      */
     public function destroy(Pengirim $pengirim)
     {
-        //
+        $pengirim->isDeleted = true;
+
+        $pengirim->save();
+
+        return redirect()->route('pengirim.index')->with('success', 'Data pengirim berhasil diperbarui');
     }
 }

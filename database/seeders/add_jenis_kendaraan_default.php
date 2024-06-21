@@ -14,7 +14,6 @@ class add_jenis_kendaraan_default extends Seeder
     {
         DB::table('jenis_kendaraan')->insert([
             'jenis_kendaraan' => 'Truk',
-            'isDeleted' => '0',
         ]);
         //
     }

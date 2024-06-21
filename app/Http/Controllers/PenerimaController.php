@@ -36,15 +36,7 @@ class PenerimaController extends Controller
         $validated_data=$request->validate([
             'nama_penerima'=>'required',
         ]);
-        $validated_data['isDeleted'] = false;
-
-        $penerima=new Penerima();
-
-        $penerima->fill($validated_data);
-
-       // dd($penerima);
-
-        $penerima->save();
+        Penerima::create($validated_data);
 
         return redirect()->route('penerima.index')->with('success','data berhasil disimpan');
 
@@ -89,6 +81,10 @@ class PenerimaController extends Controller
      */
     public function destroy(Penerima $penerima)
     {
-        //
+        $penerima->isDeleted = true;
+
+        $penerima->save();
+
+        return redirect()->route('penerima.index')->with('success', 'Data penerima berhasil diperbarui');
     }
 }

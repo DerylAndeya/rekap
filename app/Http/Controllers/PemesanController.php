@@ -37,15 +37,7 @@ class PemesanController extends Controller
             'no_telp'=>'required',
             'kota'=>'required',
         ]);
-        $validated_data['isDeleted'] = false;
-
-        $pemesan=new Pemesan();
-
-        $pemesan->fill($validated_data);
-
-       // dd($pemesan);
-
-        $pemesan->save();
+        Pemesan::create($validated_data);
 
         return redirect()->route('pemesan.index')->with('success','data berhasil disimpan');
     }
@@ -93,6 +85,10 @@ class PemesanController extends Controller
      */
     public function destroy(Pemesan $pemesan)
     {
-        //
+        $pemesan->isDeleted = true;
+
+        $pemesan->save();
+
+        return redirect()->route('pemesan.index')->with('success', 'Data penerima berhasil diperbarui');
     }
 }

@@ -19,7 +19,6 @@ class add_invoice extends Seeder
             'FK_kendaraan' => '1',
             'FK_pemesan' => '1',
             'FK_pegawai' => '1',
-            'isDeleted' => '0',
         ]);
         //
     }

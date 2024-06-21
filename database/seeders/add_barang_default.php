@@ -15,13 +15,11 @@ class add_barang_default extends Seeder
         DB::table('barang')->insert([
             'nama_barang' => 'Pipet Pop Ice Ikan Layar',
             'harga' => '15000',
-            'isDeleted' => '0',
         ]);
 
         DB::table('barang')->insert([
             'nama_barang' => 'Pipet Kuda',
             'harga' => '13000',
-            'isDeleted' => '0',
         ]);
         //
     }

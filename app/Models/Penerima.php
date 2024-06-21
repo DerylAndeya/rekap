@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Penerima extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table="penerima";
-    protected $fillable = [
-        'nama_penerima',
-            'isDeleted',
-    ];
+    protected $guarded=[];
 }

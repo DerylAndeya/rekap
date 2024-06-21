@@ -15,7 +15,6 @@ class add_transaksi extends Seeder
         DB::table('transaksi')->insert([
             'FK_kode_invoice' => '1',
             'FK_kode_barang' => '1',
-            'isDeleted' => '0',
         ]);
         //
     }

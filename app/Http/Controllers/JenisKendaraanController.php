@@ -35,13 +35,8 @@ class JenisKendaraanController extends Controller
             'nama_jenis'=>'required',
         ]);
 
-        $validated_data['isDeleted'] = false;
 
-        $jenis_kendaraan=new jenis_kendaraan();
-
-        $jenis_kendaraan->fill($validated_data);
-
-        $jenis_kendaraan->save();
+        jenis_kendaraan::create($validated_data);
 
         return redirect()->route('jenis_kendaraan.index')->with('success','data berhasil disimpan');
     }
@@ -83,6 +78,10 @@ class JenisKendaraanController extends Controller
      */
     public function destroy(jenis_kendaraan $jenis_kendaraan)
     {
-        //
+        $jenis_kendaraan->isDeleted = true;
+
+        $jenis_kendaraan->save();
+
+        return redirect()->route('jenis_kendaraan.index')->with('success', 'Data jenis kendaraan berhasil diperbarui');
     }
 }

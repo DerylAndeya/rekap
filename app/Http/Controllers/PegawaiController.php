@@ -34,13 +34,7 @@ class PegawaiController extends Controller
             'nama_pegawai'=>'required',
         ]);
 
-        $validated_data['isDeleted'] = false;
-
-        $pegawai=new Pegawai();
-
-        $pegawai->fill($validated_data);
-
-        $pegawai->save();
+        Pegawai::create($validated_data);
 
         return redirect()->route('pegawai.index')->with('success','data berhasil disimpan');
     }
@@ -83,6 +77,10 @@ class PegawaiController extends Controller
      */
     public function destroy(Pegawai $pegawai)
     {
-        //
+        $pegawai->isDeleted = true;
+
+        $pegawai->save();
+
+        return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diperbarui');
     }
 }

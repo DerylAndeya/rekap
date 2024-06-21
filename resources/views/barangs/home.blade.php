@@ -39,7 +39,7 @@
                                     <form action="{{ route('barang.destroy', ['barang' => $barang]) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip" title="Delete" data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?" data-original-title="Delete"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                     </form>
                                     </td>
                               </tr>

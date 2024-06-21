@@ -4,17 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaksi extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table="transaksi";
-    protected $fillable = [
-        'FK_kode_invoice',
-        'FK_kode_barang',
-        'jumlah',
-        'isDeleted',
-    ];
+    protected $guarded=[];
     public function invoice()
     {
         return $this->belongsTo(Invoice::class, 'FK_kode_invoice', 'id');

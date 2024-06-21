@@ -37,7 +37,6 @@ class TransaksiController extends Controller
             'jumlah'=>'required',
         ]);
 
-        $validated_data['isDeleted'] = false;
 
         $transaksi=new Transaksi();
 

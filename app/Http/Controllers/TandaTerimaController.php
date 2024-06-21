@@ -47,15 +47,8 @@ class TandaTerimaController extends Controller
             'FK_pengirim'=>'required',
             'FK_penerima'=>'required',
         ]);
-        $validated_data['isDeleted'] = false;
 
-        $tanda_terima=new TandaTerima();
-
-        $tanda_terima->fill($validated_data);
-
-       // dd($tanda_terima);
-
-        $tanda_terima->save();
+        TandaTerima::create($validated_data);
 
         return redirect()->route('tanda_terima.index')->with('success','data berhasil disimpan');
 

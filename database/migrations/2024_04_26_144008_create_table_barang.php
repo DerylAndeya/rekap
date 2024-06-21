@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->integer('harga');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
         Schema::create('jenis_kendaraan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_jenis');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -32,14 +32,14 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_telp');
             $table->string('kota');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
         Schema::create('pegawai', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pegawai');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -51,7 +51,7 @@ return new class extends Migration
             $table->unsignedBigInteger('FK_bank');
             $table->unsignedBigInteger('FK_pegawai');
             $table->unsignedBigInteger('FK_pemesan');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -60,37 +60,38 @@ return new class extends Migration
             $table->unsignedBigInteger('FK_kode_invoice');
             $table->unsignedBigInteger('FK_kode_barang');
             $table->integer('jumlah');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
         Schema::create('metode_pembayaran', function (Blueprint $table) {
             $table->id();
             $table->string('nama_metode');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
         Schema::create('bank', function (Blueprint $table) {
             $table->id();
             $table->string('nama_bank');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
         Schema::create('pengirim', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pengirim');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
         Schema::create('penerima', function (Blueprint $table) {
             $table->id();
             $table->string('nama_penerima');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
+
 
         Schema::create('tanda_terima', function (Blueprint $table) {
             $table->id();
@@ -101,7 +102,7 @@ return new class extends Migration
             $table->unsignedBigInteger('FK_pegawai');
             $table->unsignedBigInteger('FK_pengirim');
             $table->unsignedBigInteger('FK_penerima');
-            $table->boolean('isDeleted')->default(0)->nullable(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

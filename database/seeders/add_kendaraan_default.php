@@ -16,7 +16,6 @@ class add_kendaraan_default extends Seeder
             'nama_kendaraan' => 'Truk Toyota',
             'plat' => 'BG 1283 ABC',
             'FK_jenis_kendaraan' => '1',
-            'isDeleted' => '0',
         ]);
         //
     }

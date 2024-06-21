@@ -17,7 +17,6 @@ class add_pemesan extends Seeder
             'alamat' => 'Jl. Tulung Agung',
             'no_telp' => '0896644444',
             'kota' => 'Palembang',
-            'isDeleted' => '0',
         ]);
         //
     }

@@ -11,6 +11,8 @@ use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\TandaTerimaController;
 use App\Http\Controllers\RekapController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\Owner;
 use Illuminate\Support\Facades\Route;
 // Route::get('login', function() {
 //     return view('auth.login');
@@ -18,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('rekap.index');
 });
-
 Route::middleware(['auth'])->group(function () {
     Route::resource('barang',BarangController::class);
     Route::resource('jenis_kendaraan',JenisKendaraanController::class);
@@ -33,4 +34,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('tanda_terima',TandaTerimaController::class);
     Route::get('/export_invoice', [InvoiceController::class, 'exportToExcel'])->name('invoice.export');
     Route::get('/rekap_penjualan', [RekapController::class, 'index'])->name('rekap.index');
+    Route::resource('user',UserController::class)->middleware(Owner::class);
 });

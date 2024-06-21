@@ -35,13 +35,8 @@ class BankController extends Controller
         $validated_data=$request->validate([
             'nama_bank'=>'required',
         ]);
-        $validated_data['isDeleted'] = false;
 
-        $bank=new Bank();
-
-        $bank->fill($validated_data);
-
-        $bank->save();
+        Bank::create($validated_data);
 
         return redirect()->route('bank.index')->with('success','data berhasil disimpan');
     }

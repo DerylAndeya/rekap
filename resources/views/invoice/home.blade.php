@@ -45,11 +45,9 @@
                                             <td>
                                                 <a href="{{ route('invoice.edit', ['invoice' => $i]) }}" class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title=""
                                                     data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action trigger--fire-modal-1" data-toggle="tooltip"
-                                                    title=""
-                                                    data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('Deleted')" data-original-title="Delete"><i
-                                                        class="fas fa-trash"></i></a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                             </td>
                                             <td>
                                                 <a href="{{ route('transaksi.index', ['id' => $i->id]) }}" class="btn btn-success btn-action mr-1" data-toggle="tooltip" title=""

@@ -15,11 +15,9 @@ class MetodePembayaranSeeder extends Seeder
     {
         DB::table('metode_pembayaran')->insert([
             'nama_metode' => 'Cash',
-            'isDeleted' => '0',
         ]);
         DB::table('metode_pembayaran')->insert([
             'nama_metode' => 'Tranfer',
-            'isDeleted' => '0',
         ]);
     }
 }

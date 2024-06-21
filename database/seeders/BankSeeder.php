@@ -15,7 +15,6 @@ class BankSeeder extends Seeder
     {
         DB::table('bank')->insert([
             'nama_bank' => 'BCA',
-            'isDeleted' => '0',
         ]);
 
     }

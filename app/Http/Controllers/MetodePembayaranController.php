@@ -36,15 +36,8 @@ class MetodePembayaranController extends Controller
         $validated_data=$request->validate([
             'nama_metode'=>'required',
         ]);
-        $validated_data['isDeleted'] = false;
 
-        $metode_pembayaran=new MetodePembayaran();
-
-        $metode_pembayaran->fill($validated_data);
-
-       // dd($metode_pembayaran);
-
-        $metode_pembayaran->save();
+        MetodePembayaran::create($validated_data);
 
         return redirect()->route('metode_pembayaran.index')->with('success','data berhasil disimpan');
 
@@ -88,6 +81,10 @@ class MetodePembayaranController extends Controller
      */
     public function destroy(MetodePembayaran $metodePembayaran)
     {
-        //
+        $metodePembayaran->isDeleted = true;
+
+        $metodePembayaran->save();
+
+        return redirect()->route('metode_pembayaran.index')->with('success', 'Data metode pembayaran berhasil diperbarui');
     }
 }

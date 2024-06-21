@@ -4,20 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Invoice extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table="invoice";
-    protected $fillable = [
-        'nomor_invoice',
-        'tanggal',
-        'FK_metode_pembayaran',
-        'FK_bank',
-        'FK_pegawai',
-        'FK_pemesan',
-        'isDeleted',
-    ];
+    protected $guarded=[];
 
     public function metode_pembayaran()
     {
