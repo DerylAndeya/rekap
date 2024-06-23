@@ -6,6 +6,7 @@ use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\DetailRekapController;
 use App\Http\Controllers\PengirimController;
 use App\Http\Controllers\PenerimaController;
 use App\Http\Controllers\MetodePembayaranController;
@@ -35,5 +36,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('tanda_terima',TandaTerimaController::class)->middleware(Admin::class);
     Route::get('/export_invoice', [InvoiceController::class, 'exportToExcel'])->name('invoice.export');
     Route::get('/rekap_penjualan', [RekapController::class, 'index'])->name('rekap.index');
+    Route::get('/rekap_tiap_bulan/{month}',[DetailRekapController::class,'getInvoiceAndTransactions'])->name('monthly');
     Route::resource('user',UserController::class)->middleware(Owner::class);
 });

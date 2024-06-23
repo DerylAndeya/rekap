@@ -160,14 +160,17 @@
                             <tr>
                                 <th>Bulan</th>
                                 <th>Total</th>
+                                <th>details</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($resultsPerMonth as $result)
-                                <tr>
-                                    <td>{{ $result['bulan'] }}</td>
-                                    <td>{{ number_format($result['total'], 2) }}</td>
-                                </tr>
+                            <tr>
+                                <td><a href="{{ route('monthly', ['month' => $result['bulan']]) }}">{{ $result['bulan'] }}</a></td>
+                                <td><a href="{{ route('monthly', ['month' => $result['bulan']]) }}">{{ number_format($result['total'], 2) }}</a></td>
+                                <td><a href="{{ route('monthly', ['month' => $result['bulan']]) }}">Link</a></td>
+                            </tr>
+
                             @endforeach
                         </tbody>
                     </table>
