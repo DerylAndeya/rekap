@@ -77,9 +77,7 @@ class PegawaiController extends Controller
      */
     public function destroy(Pegawai $pegawai)
     {
-        $pegawai->isDeleted = true;
-
-        $pegawai->save();
+        $pegawai->delete();
 
         return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diperbarui');
     }

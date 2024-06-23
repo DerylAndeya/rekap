@@ -81,9 +81,7 @@ class MetodePembayaranController extends Controller
      */
     public function destroy(MetodePembayaran $metodePembayaran)
     {
-        $metodePembayaran->isDeleted = true;
-
-        $metodePembayaran->save();
+        $metodePembayaran->delete();
 
         return redirect()->route('metode_pembayaran.index')->with('success', 'Data metode pembayaran berhasil diperbarui');
     }

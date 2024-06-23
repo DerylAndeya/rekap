@@ -82,8 +82,7 @@
                         <div class="col-md-6">
                           <address>
                             <strong>Payment Method:</strong><br>
-                            Visa ending **** 4242<br>
-                            ujang@maman.com
+                            {{$invoice->metode_pembayaran->nama_metode}}<br><br>
                           </address>
                         </div>
                         <div class="col-md-6 text-md-right">
@@ -145,8 +144,6 @@
                     </div>
                       <div class="row mt-4">
                         <div class="col-lg-8">
-                          <div class="section-title">Payment Method : {{$invoice->metode_pembayaran->nama_metode}}</div>
-
                         </div>
                         <div class="col-lg-4 text-right">
                           <div class="invoice-detail-item">
@@ -170,7 +167,6 @@
                 <hr>
                 <div class="text-md-right">
                   <div class="float-lg-left mb-lg-0 mb-3">
-                    <button class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process Payment</button>
                     <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button>
                   </div>
                   <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>

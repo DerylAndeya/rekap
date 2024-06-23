@@ -30,10 +30,10 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $metode_pembayaran = MetodePembayaran::where('isDeleted', false)->get();
-        $bank = Bank::where('isDeleted', false)->get();
-        $pegawai = Pegawai::where('isDeleted', false)->get();
-        $pemesan = Pemesan::where('isDeleted', false)->get();
+        $metode_pembayaran = MetodePembayaran::all();
+        $bank = Bank::all();
+        $pegawai = Pegawai::all();
+        $pemesan = Pemesan::all();
         return view('invoice/form_create')->with(['mps' => $metode_pembayaran, 'banks' => $bank, 'pegawais' => $pegawai, 'pemesans' => $pemesan]);
     }
 
@@ -80,10 +80,10 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        $metode_pembayaran = MetodePembayaran::where('isDeleted', false)->get();
-        $bank = Bank::where('isDeleted', false)->get();
-        $pegawai = Pegawai::where('isDeleted', false)->get();
-        $pemesan = Pemesan::where('isDeleted', false)->get();
+        $metode_pembayaran = MetodePembayaran::all();
+        $bank = Bank::all();
+        $pegawai = Pegawai::all();
+        $pemesan = Pemesan::all();
         return view('invoice/form_edit')->with(['mps' => $metode_pembayaran, 'invoice' => $invoice, 'banks' => $bank, 'pegawais' => $pegawai, 'pemesans' => $pemesan]);
     }
 
@@ -111,9 +111,7 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-        $invoice->isDeleted = true;
-
-        $invoice->save();
+        $invoice->delete();
 
         return redirect()->route('invoice.index')->with('success', 'Data invoice berhasil diperbarui');
     }

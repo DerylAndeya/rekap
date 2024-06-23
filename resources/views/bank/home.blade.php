@@ -4,14 +4,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-        <h1>Tabel Barang</h1>
+        <h1>Tabel Bank</h1>
         </div>
 
         <div class="section-body">
 
           <div class="card">
             <div class="card-header">
-              <h4>LIST TABEL BARANG</h4>
+              <h4>LIST TABEL BANK</h4>
               <div class="card-header-action">
                 <a href="{{route('bank.create')}}" class="btn btn-primary">Tambah Baru</a>
               </div>

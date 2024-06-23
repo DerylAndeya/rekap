@@ -12,6 +12,7 @@ use App\Http\Controllers\MetodePembayaranController;
 use App\Http\Controllers\TandaTerimaController;
 use App\Http\Controllers\RekapController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Admin;
 use App\Http\Middleware\Owner;
 use Illuminate\Support\Facades\Route;
 // Route::get('login', function() {
@@ -21,17 +22,17 @@ Route::get('/', function () {
     return redirect()->route('rekap.index');
 });
 Route::middleware(['auth'])->group(function () {
-    Route::resource('barang',BarangController::class);
-    Route::resource('jenis_kendaraan',JenisKendaraanController::class);
-    Route::resource('transaksi',TransaksiController::class);
-    Route::resource('pemesan',PemesanController::class);
-    Route::resource('pegawai',PegawaiController::class);
-    Route::resource('invoice',InvoiceController::class);
-    Route::resource('bank',BankController::class);
-    Route::resource('pengirim',PengirimController::class);
-    Route::resource('penerima',PenerimaController::class);
-    Route::resource('metode_pembayaran',MetodePembayaranController::class);
-    Route::resource('tanda_terima',TandaTerimaController::class);
+    Route::resource('barang',BarangController::class)->middleware(Admin::class);
+    Route::resource('jenis_kendaraan',JenisKendaraanController::class)->middleware(Admin::class);
+    Route::resource('transaksi',TransaksiController::class)->middleware(Admin::class);
+    Route::resource('pemesan',PemesanController::class)->middleware(Admin::class);
+    Route::resource('pegawai',PegawaiController::class)->middleware(Admin::class);
+    Route::resource('invoice',InvoiceController::class)->middleware(Admin::class);
+    Route::resource('bank',BankController::class)->middleware(Admin::class);
+    Route::resource('pengirim',PengirimController::class)->middleware(Admin::class);
+    Route::resource('penerima',PenerimaController::class)->middleware(Admin::class);
+    Route::resource('metode_pembayaran',MetodePembayaranController::class)->middleware(Admin::class);
+    Route::resource('tanda_terima',TandaTerimaController::class)->middleware(Admin::class);
     Route::get('/export_invoice', [InvoiceController::class, 'exportToExcel'])->name('invoice.export');
     Route::get('/rekap_penjualan', [RekapController::class, 'index'])->name('rekap.index');
     Route::resource('user',UserController::class)->middleware(Owner::class);

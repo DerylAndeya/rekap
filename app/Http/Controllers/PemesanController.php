@@ -85,9 +85,7 @@ class PemesanController extends Controller
      */
     public function destroy(Pemesan $pemesan)
     {
-        $pemesan->isDeleted = true;
-
-        $pemesan->save();
+        $pemesan->delete();
 
         return redirect()->route('pemesan.index')->with('success', 'Data penerima berhasil diperbarui');
     }

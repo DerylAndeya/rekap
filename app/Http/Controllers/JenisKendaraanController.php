@@ -78,9 +78,7 @@ class JenisKendaraanController extends Controller
      */
     public function destroy(jenis_kendaraan $jenis_kendaraan)
     {
-        $jenis_kendaraan->isDeleted = true;
-
-        $jenis_kendaraan->save();
+        $jenis_kendaraan->delete();
 
         return redirect()->route('jenis_kendaraan.index')->with('success', 'Data jenis kendaraan berhasil diperbarui');
     }

@@ -153,7 +153,7 @@ class RekapController extends Controller
             'tahun' => 'Total Tahunan',
             'total' => $totalYearly,
         ];
-
+        
         return $resultsPerYear;
     }
     //

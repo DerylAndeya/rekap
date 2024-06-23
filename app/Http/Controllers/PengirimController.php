@@ -81,9 +81,7 @@ class PengirimController extends Controller
      */
     public function destroy(Pengirim $pengirim)
     {
-        $pengirim->isDeleted = true;
-
-        $pengirim->save();
+        $pengirim->delete();
 
         return redirect()->route('pengirim.index')->with('success', 'Data pengirim berhasil diperbarui');
     }

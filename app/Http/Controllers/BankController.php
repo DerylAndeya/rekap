@@ -79,9 +79,7 @@ class BankController extends Controller
     public function destroy(Bank $bank)
     {
 
-        $bank->isDeleted = true;
-
-        $bank->save();
+        $bank->delete();
 
         return redirect()->route('bank.index')->with('success', 'Data barang berhasil diperbarui');
     }

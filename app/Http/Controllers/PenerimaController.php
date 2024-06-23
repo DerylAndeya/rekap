@@ -81,9 +81,7 @@ class PenerimaController extends Controller
      */
     public function destroy(Penerima $penerima)
     {
-        $penerima->isDeleted = true;
-
-        $penerima->save();
+        $penerima->delete();
 
         return redirect()->route('penerima.index')->with('success', 'Data penerima berhasil diperbarui');
     }

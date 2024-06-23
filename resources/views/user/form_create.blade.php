@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="role">Role</label>
-                        <input type="text" class="form-control" name="role" id="role">
+                        <input type="select" class="form-control" name="role" id="role">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
